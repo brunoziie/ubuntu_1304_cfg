@@ -1,0 +1,23 @@
+#!/bin/bash
+
+sudo add-apt-repository ppa:webupd8team/sublime-text-3 -y
+sudo add-apt-repository ppa:ricotz/docky -y 
+sudo add-apt-repository ppa:tiheum/equinox -y 
+sudo add-apt-repository ppa:chris-lea/node.js -y
+sudo add-apt-repository ppa:webupd8team/java -y
+
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list'
+
+sudo apt-get update
+sudo apt-get install terminator vlc python-software-properties python g++ make sublime-text-installer plank faenza-icon-theme nodejs tasksel google-chrome-stable ttf-mscorefonts-installer inkscape gimp unity-tweak-tool samba git git-core oracle-java7-installer -y
+
+sudo tasksel install lamp-server
+sudo chmod 777 /var/www
+sudo echo 'enabled=0' > /etc/default/apport && sudo restart apport
+
+cd /usr/local/share/fonts
+sudo wget 
+
+sudo apt-get update -y 
+sudo apt-get clean -y
