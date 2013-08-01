@@ -1,23 +1,42 @@
 #!/bin/bash
 
+## REPOS
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list'
 sudo add-apt-repository ppa:webupd8team/sublime-text-3 -y
 sudo add-apt-repository ppa:ricotz/docky -y 
 sudo add-apt-repository ppa:tiheum/equinox -y 
 sudo add-apt-repository ppa:chris-lea/node.js -y
 sudo add-apt-repository ppa:webupd8team/java -y
 
-wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list'
-
+## UPDATE APT LIST
 sudo apt-get update
+
+## INSTALL
 sudo apt-get install terminator vlc python-software-properties python g++ make sublime-text-installer plank faenza-icon-theme nodejs tasksel google-chrome-stable ttf-mscorefonts-installer inkscape gimp unity-tweak-tool samba git git-core oracle-java7-installer -y
 
+## INSTALL LAMP-SERVER
 sudo tasksel install lamp-server
 sudo chmod 777 /var/www
 sudo echo 'enabled=0' > /etc/default/apport && sudo restart apport
 
+## SETTING UP SUBLIME TEXT CONFIGS
 cd /usr/local/share/fonts
-sudo wget 
+sudo wget https://github.com/brunoziie/ubuntu_1304_cfg/raw/master/Monaco.ttf
 
-sudo apt-get update -y 
+cd ~/.config/sublime-text-3/Packages 
+git clone https://github.com/wbond/sublime_package_control.git "Package Control"
+cd "Package Control"
+git checkout python3
+
+echo '{"font_face": "Monaco", "font_size": 8}' > ./User/Preferences.sublime-settings
+echo '[{ "keys": ["ctrl+shift+o"], "command": "goto_definition" }]' > ./User/Default\ \(Linux\).sublime-keymap
+
+## SET BASH ALIAS
+echo 'alias gc="git commit -am"' >> ~/.bashrc
+echo 'alias gp="git pull && git push"' >> ~/.bashrc
+echo 'alias www="cd /var/www"' >> ~/.bashrc
+
+## INSTALL SYSTEM UPDATES
+sudo apt-get upgrade -y 
 sudo apt-get clean -y
