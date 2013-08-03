@@ -28,7 +28,7 @@ wget https://github.com/brunoziie/ubuntu_1304_cfg/raw/master/adminer.php
 wget https://raw.github.com/vrana/adminer/master/designs/haeckel/adminer.css
 
 ## ORTHER CONFIGS
-sudo sh -c 'echo "enabled=0" > /etc/default/apport' && sudo restart apport
+sudo sh -c 'echo "enabled=0" > /etc/default/apport' && sudo service apport stop
 
 ## SETTING UP SUBLIME TEXT CONFIGS
 cd /usr/local/share/fonts
