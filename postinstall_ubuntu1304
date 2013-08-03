@@ -13,15 +13,17 @@ sudo add-apt-repository ppa:webupd8team/java -y
 sudo apt-get update
 
 ## INSTALL
-sudo apt-get install terminator vlc python-software-properties python g++ rar make sublime-text-installer plank faenza-icon-theme nodejs tasksel google-chrome-stable ttf-mscorefonts-installer inkscape gimp unity-tweak-tool samba git git-core oracle-java7-installer vim -y
+sudo apt-get install terminator vlc python-software-properties python g++ rar make curl sublime-text-installer plank faenza-icon-theme nodejs tasksel google-chrome-stable ttf-mscorefonts-installer inkscape gimp unity-tweak-tool samba git git-core oracle-java7-installer vim -y
 
 ## INSTALL LAMP-SERVER
 sudo tasksel install lamp-server
 sudo apt-get install php5-gd php5-curl php5-xdebug
 sudo chmod 777 /var/www
 sudo a2enmod rewrite
+sudo sh -c 'curl https://raw.github.com/brunoziie/ubuntu_1304_cfg/master/apache_default_site.conf > /etc/apache2/sites-available/default'
 sudo sh -c 'echo "ServerName localhost" >> /etc/apache2/conf.d/name'
 sudo service apache2 restart
+
 
 cd /var/www
 wget https://github.com/brunoziie/ubuntu_1304_cfg/raw/master/adminer.php
